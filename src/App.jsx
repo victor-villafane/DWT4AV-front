@@ -1,5 +1,7 @@
 import React from "react"
 import Hola from "./components/Hola"
+import List from "./components/Listado/List"
+import { Button } from 'react-bootstrap';
 function App() {
 //---------------------------------------
 console.log("HOLA DESDE REACT")
@@ -11,13 +13,16 @@ const usuarios = [
   { id: 4, name: 'David Rodríguez', email: 'david@example.com' },
 ]
 //---------------------------------------
+const cssProperties = { color: "blue", backgroundImage: "url('https://picsum.photos/200/300')" }
   return (
     <>
-      <ul>
-        { usuarios.map( (usuario, indice) => <li key={indice} >{usuario.name} - { usuario.email }</li> ) }  
-      </ul>
+      <List listadoUsuarios={usuarios} style={cssProperties} className="" >
+        {/* TODO LO QUE ENVIE ENTRE SUS ESTIQUETAS TERMINA EN CHILDREEN */}
+        <h1>HOLA DESDE APP.JS</h1>
+      </List>
       <p>Recorriendo usuarios</p>
       < Hola name={nombre} lastName={"Mio"} />
+
     </>
   )
 }
