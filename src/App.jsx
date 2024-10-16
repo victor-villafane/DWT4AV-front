@@ -1,7 +1,8 @@
 import React from "react"
 import Hola from "./components/Hola"
 import List from "./components/Listado/List"
-import { Button } from 'react-bootstrap';
+import Contador from "./components/Contador/Contador"
+import FetchList from "./components/Fetch/FetchList"
 function App() {
 //---------------------------------------
 console.log("HOLA DESDE REACT")
@@ -22,7 +23,8 @@ const cssProperties = { color: "blue", backgroundImage: "url('https://picsum.pho
       </List>
       <p>Recorriendo usuarios</p>
       < Hola name={nombre} lastName={"Mio"} />
-
+      <Contador></Contador>
+      <FetchList></FetchList>
     </>
   )
 }
