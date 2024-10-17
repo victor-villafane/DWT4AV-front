@@ -6,14 +6,14 @@ const FetchList = () => {
   const getDatos = async(uri) => {
     const response = await fetch(uri)
     const datos = await response.json()
-    setListado( datos.results )
-    console.log("Me llamaron")
+    setListado( datos )
+    console.log( datos )
   }
 //   getDatos()
   useEffect( () => {
     //mounted
-    getDatos(`https://rickandmortyapi.com/api/character/?page=${page}`)
-
+    // getDatos(`https://rickandmortyapi.com/api/character/?page=${page}`)
+    getDatos("http://localhost:2025/api/peliculas")
     return () => {
         console.log("UnMount")
     }
