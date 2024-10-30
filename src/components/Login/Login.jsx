@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const navigate = useNavigate()
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -15,7 +18,13 @@ const Login = () => {
             }
         })
         const data = await response.json()
-        console.log(data)
+        if(!data.token){
+            alert("Usuario o contraseña incorrectos")
+            return
+        }else{
+          localStorage.setItem('token', data.token)
+          navigate("/")
+        }
     }
 
     const handleChangeEmail = (event) => {
@@ -58,7 +67,7 @@ const Login = () => {
           </div>
           <button type="submit" className="btn btn-primary w-100">Iniciar Sesión</button>
           <div className="text-center mt-3">
-            <a href="#" className="text-decoration-none text-secondary">¿Olvidaste tu contraseña?</a>
+            <Link to="/register" className="text-decoration-none text-secondary">¿Olvidaste tu contraseña?</Link>
           </div>
         </form>
       </div>
