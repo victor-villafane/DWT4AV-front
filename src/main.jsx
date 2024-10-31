@@ -12,6 +12,7 @@ import Register from './components/Login/Register.jsx';
 import Home from './pages/Home.jsx';
 import ProtectedRoute from './components/Rutas/ProtectedRoute.jsx';
 import Layout from './components/Layout/Layout.jsx';
+import DetallePelicula from './components/Peliculas/DetallePelicula.jsx'
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/pelicula/:id",
+        element: <ProtectedRoute> <DetallePelicula /> </ProtectedRoute>
       }       
     ]
   }

@@ -1,6 +1,9 @@
 import React,{ useEffect, useState } from 'react'
-
+import { useNavigate } from 'react-router-dom'
+import ListadoPeliculas from '../components/Peliculas/ListadoPeliculas'
 const Home = () => {
+    const navigate = useNavigate()
+    const [peliculas, setPeliculas] = useState([])
 
     useEffect( () => {
         fetch("http://localhost:2025/api/peliculas", {
@@ -10,12 +13,19 @@ const Home = () => {
                 "auth-token": localStorage.getItem("token")
             }
         })
-        .then( response => response.json() )
-        .then( data => console.log(data) )
+        .then( response => {
+
+            if( response.status >= 300  ) 
+                navigate("/login")
+
+            return response.json()
+        } )
+        .then( data => setPeliculas(data) )
+        .catch( error => navigate("/login") )
     },[] )
 
     return (
-        <div>Home</div>
+        <ListadoPeliculas listado={peliculas} />
     )
 }
 
