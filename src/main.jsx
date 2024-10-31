@@ -13,6 +13,8 @@ import Home from './pages/Home.jsx';
 import ProtectedRoute from './components/Rutas/ProtectedRoute.jsx';
 import Layout from './components/Layout/Layout.jsx';
 import DetallePelicula from './components/Peliculas/DetallePelicula.jsx'
+import ListadoLibro from './components/Libros/ListadoLibro.jsx'
+import LibroDetalle from './components/Libros/LibroDetalle.jsx'
 
 const router = createBrowserRouter([
   {
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
       {
         path: "/pelicula/:id",
         element: <ProtectedRoute> <DetallePelicula /> </ProtectedRoute>
+      },
+      {
+        path: "/libros",
+        element: <ProtectedRoute> <ListadoLibro /> </ProtectedRoute>
+      },
+      {
+        path: "/libro/:id",
+        element: <ProtectedRoute> <LibroDetalle /> </ProtectedRoute>
       }       
     ]
   }
