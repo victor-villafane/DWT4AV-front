@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import {SessionContext} from '../../contexts/session.context'
 
 const Login = () => {
 
@@ -7,6 +8,8 @@ const Login = () => {
     const [password, setPassword] = useState('')
 
     const navigate = useNavigate()
+
+    const { onLogin } = useContext(SessionContext)
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -22,7 +25,8 @@ const Login = () => {
             alert("Usuario o contraseña incorrectos")
             return
         }else{
-          localStorage.setItem('token', data.token)
+          // localStorage.setItem('token', data.token)
+          onLogin(data.token)
           navigate("/")
         }
     }

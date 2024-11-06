@@ -15,6 +15,7 @@ import Layout from './components/Layout/Layout.jsx';
 import DetallePelicula from './components/Peliculas/DetallePelicula.jsx'
 import ListadoLibro from './components/Libros/ListadoLibro.jsx'
 import LibroDetalle from './components/Libros/LibroDetalle.jsx'
+import Logout from './components/Login/Logout.jsx'
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
+        path: "/logout",
+        element: <Logout />
+      },
+      {
         path: "/pelicula/:id",
         element: <ProtectedRoute> <DetallePelicula /> </ProtectedRoute>
       },
@@ -43,13 +48,13 @@ const router = createBrowserRouter([
       {
         path: "/libro/:id",
         element: <ProtectedRoute> <LibroDetalle /> </ProtectedRoute>
-      }       
+      }
     ]
   }
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
   </StrictMode>,
 )

@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
+import {SessionContext} from "../../contexts/session.context"
 const NavBar = () => {
+
+    const { token } = useContext(SessionContext)
+    
+    console.log(token)
+
     return (
         <nav className="navbar navbar-expand-md navbar-light bg-light">
             <div className="container-fluid">
@@ -19,7 +25,7 @@ const NavBar = () => {
                 <div className='collapse navbar-collapse' id="navbarNav">
                     <ul className='navbar-nav' >
                         {
-                            !localStorage.getItem("token")
+                            !token
                                 ? <>
                                     <li className='nav-item' >
                                         <Link className='nav-link' to="/login">login</Link>
