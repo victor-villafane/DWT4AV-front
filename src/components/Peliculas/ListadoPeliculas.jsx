@@ -6,7 +6,7 @@ const ListadoPeliculas = ({ listado }) => {
     return (
         <div className="container my-5">
             <div className='row'>
-                <div className='col-md-3' >
+                <div className='col-md-3 col-12' >
                     {
                          ( listado.length ) && listado.map( (pelicula) => (
                             <div className="card" style={{ width: "100%" }} >

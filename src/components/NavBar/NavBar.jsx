@@ -1,12 +1,10 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import {SessionContext} from "../../contexts/session.context"
+import { useToken } from "../../contexts/session.context"
 const NavBar = () => {
 
-    const { token } = useContext(SessionContext)
+    const token = useToken()
     
-    console.log(token)
-
     return (
         <nav className="navbar navbar-expand-md navbar-light bg-light">
             <div className="container-fluid">

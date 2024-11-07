@@ -1,6 +1,25 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const SessionContext = createContext()
+
+function useSession(){
+    return useContext(SessionContext)
+}
+
+function useLogOut(){ 
+    const { onLogout } = useSession()
+    return onLogout
+}
+
+function useLogin(){
+    const { onLogin } = useSession()
+    return onLogin
+}
+
+function useToken(){
+    const { token } = useSession()
+    return token
+}
 
 function SessionProvider({ children }) {
     const [token, setToken] = useState(localStorage.getItem("token"))
@@ -23,4 +42,4 @@ function SessionProvider({ children }) {
     )
 }
 
-export { SessionContext, SessionProvider }
+export { SessionContext, SessionProvider, useSession, useLogOut, useLogin, useToken }
