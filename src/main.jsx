@@ -16,10 +16,12 @@ import DetallePelicula from './components/Peliculas/DetallePelicula.jsx'
 import ListadoLibro from './components/Libros/ListadoLibro.jsx'
 import LibroDetalle from './components/Libros/LibroDetalle.jsx'
 import Logout from './components/Login/Logout.jsx'
+import Error404Page from './pages/Error404Page.jsx'
 
 const router = createBrowserRouter([
   {
     element: <Layout />,
+    errorElement: <Error404Page />,
     children: [ //children es un array de objetos que representan rutas, rutas anidadas
       {
         path: "/",
@@ -48,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/libro/:id",
         element: <ProtectedRoute> <LibroDetalle /> </ProtectedRoute>
+      },
+      {
+        path: "*",
+        element: <Error404Page />
       }
     ]
   }
