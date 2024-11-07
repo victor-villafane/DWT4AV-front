@@ -1,21 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-
+import * as servicePelicula from '../../services/peliculas.service'
 const DetallePelicula = () => {
 
     const [pelicula, setPelicula] = useState({})
     const { id } = useParams()
 
     useEffect( () => {
-        fetch("http://localhost:2025/api/peliculas/" + id,{
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "auth-token": localStorage.getItem("token")
-            }
+        servicePelicula.getPelicula( id )
+        .then( pelicula => {
+            setPelicula( pelicula )
         })
-        .then( response => response.json() )
-        .then( data => setPelicula(data) )
     } )
 
     return (

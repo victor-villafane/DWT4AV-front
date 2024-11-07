@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useLogin } from '../../contexts/session.context'
-
+import { login } from '../../services/auth.service'
 const Login = () => {
 
     const [email, setEmail] = useState('')
@@ -13,22 +13,17 @@ const Login = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-        const response = await fetch("http://localhost:2025/api/usuarios/login",{
-            method: "POST",
-            body: JSON.stringify({"email": email, "password": password}),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+
+        login({ email, password })
+        .then( usuario => {
+          console.log(usuario)
+            onLogin( usuario.token )
+            navigate('/')
         })
-        const data = await response.json()
-        if(!data.token){
-            alert("Usuario o contraseña incorrectos")
-            return
-        }else{
-          console.log('token', data.token)
-          onLogin(data.token)
-          navigate("/")
-        }
+        .catch( error => {
+            console.log(error)
+        })
+
     }
 
     const handleChangeEmail = (event) => {

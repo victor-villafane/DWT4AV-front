@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
-
+import { register } from '../../services/auth.service'
 const Register = () => {
 
     const [email, setEmail] = useState('')
@@ -16,33 +16,13 @@ const Register = () => {
             alert("Las contraseñas no coinciden")
             return
         }
-        const response = await fetch("http://localhost:2025/api/usuarios",{
-            method: "POST",
-            body: JSON.stringify({"email": email, "password": password, "passwordConfirm": passwordVerify}),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        if( response.status == 201 ){
-            //Hacia donde quiero navegar
-            // const login = await fetch("http://localhost:2025/api/usuarios/login",{
-            //     method: "POST",
-            //     body: JSON.stringify({"email": email, "password": password}),
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     }
-            // })
-            // const data = await login.json() 
-            // localStorage.setItem('token', data.token)           
-            // if(data.token){
-            //     navigate('/')
-            // }else{
-            //     navigate('/login')
-            // }
+        register({ email, password, confirmPassword: passwordVerify })
+        .then( usuario => {
             navigate('/login')
-        }else{
-            setError("Error al registrar usuario")
-        }
+        })
+        .catch( error => {
+            setError(error)
+        })
     }
 
     const handleChangeEmail = (event) => {

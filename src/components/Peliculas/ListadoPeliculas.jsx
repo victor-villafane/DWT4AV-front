@@ -9,7 +9,7 @@ const ListadoPeliculas = ({ listado }) => {
                 <div className='col-md-3 col-12' >
                     {
                          ( listado.length ) && listado.map( (pelicula) => (
-                            <div className="card" style={{ width: "100%" }} >
+                            <div key={pelicula._id} className="card" style={{ width: "100%" }} >
                             <img src={ pelicula.img_link } className="card-img-top" alt="Pulp Fiction" />
                             <div className="card-body">
                                 <h5 className="card-title">{ pelicula.name }</h5>
