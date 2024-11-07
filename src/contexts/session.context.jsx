@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SessionContext = createContext()
 
@@ -24,6 +25,8 @@ function useToken(){
 function SessionProvider({ children }) {
     const [token, setToken] = useState(localStorage.getItem("token"))
 
+    const navigate = useNavigate()
+
     const onLogout = () => {
         localStorage.clear()
         setToken(null)
@@ -33,6 +36,25 @@ function SessionProvider({ children }) {
         localStorage.setItem("token", jwt)
         setToken(jwt)
     }
+
+    useEffect( () => {
+        fetch("http://localhost:2025/api/usuario",{
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': token
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if( data.message ){
+                onLogout()
+                navigate("/login")
+            }else{
+                onLogin(token)
+            }
+        })
+    },[] )
 
     return (
         <SessionContext.Provider value={{ token, onLogout, onLogin }}>

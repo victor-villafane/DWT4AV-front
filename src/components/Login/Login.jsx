@@ -25,7 +25,7 @@ const Login = () => {
             alert("Usuario o contraseña incorrectos")
             return
         }else{
-          // localStorage.setItem('token', data.token)
+          console.log('token', data.token)
           onLogin(data.token)
           navigate("/")
         }
