@@ -18,7 +18,7 @@ const Register = () => {
         }
         register({ email, password, confirmPassword: passwordVerify })
         .then( usuario => {
-            navigate('/login')
+            //navigate('/login')
         })
         .catch( error => {
             setError(error)
