@@ -34,7 +34,7 @@ const Error404Page = () => {
             <p>La página que buscas no existe</p>
             <button
                 className="btn btn-primary"
-                onClick={ () => navigate("/login")}
+                onClick={() => navigate("/")}
             >
                 Volver al inicio
             </button>
