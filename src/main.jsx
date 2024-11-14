@@ -17,6 +17,7 @@ import ListadoLibro from './components/Libros/ListadoLibro.jsx'
 import LibroDetalle from './components/Libros/LibroDetalle.jsx'
 import Logout from './components/Login/Logout.jsx'
 import Error404Page from './pages/Error404Page.jsx'
+import Chat from './pages/Chat.jsx'
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/logout",
         element: <Logout />
+      },
+      {
+        path: "/chat",
+        element: <Chat />
       },
       {
         path: "/pelicula/:id",
