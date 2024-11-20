@@ -19,6 +19,7 @@ import Logout from './components/Login/Logout.jsx'
 import Error404Page from './pages/Error404Page.jsx'
 import Chat from './pages/Chat.jsx'
 import ImageUpload from './components/upload/ImageUpload.jsx'
+import CharMultiUsuario from './pages/CharMultiUsuario.jsx'
 
 const router = createBrowserRouter([
   {
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/chat",
-        element: <Chat />
+        element: <CharMultiUsuario />
       },
       {
         path: "/pelicula/:id",
