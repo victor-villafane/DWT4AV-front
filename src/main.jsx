@@ -18,6 +18,7 @@ import LibroDetalle from './components/Libros/LibroDetalle.jsx'
 import Logout from './components/Login/Logout.jsx'
 import Error404Page from './pages/Error404Page.jsx'
 import Chat from './pages/Chat.jsx'
+import ImageUpload from './components/upload/ImageUpload.jsx'
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/libro/:id",
         element: <ProtectedRoute> <LibroDetalle /> </ProtectedRoute>
+      },
+      {
+        path: "/upload",
+        element: <ImageUpload />
       },
       {
         path: "*",
