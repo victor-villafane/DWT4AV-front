@@ -21,10 +21,11 @@ const CharMultiUsuario = () => {
         }
     }
 
+    socket.on("chat message", (recibido) => {
+        setMessages( () => [...messages, recibido] )
+    })
+    
     useEffect( () => {
-        socket.on("chat message", (recibido) => {
-            setMessages( () => [...messages, recibido] )
-        })
         return () => {
             socket.off("chat message")
         }
